@@ -1,0 +1,26 @@
+{
+  "name": "rmt_backend",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/nsITians/RMT_Backend.git"
+  },
+  "author": "Varun Gupta <varun.gupta1798@gmail.com> (http://codingblocks.com)",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/nsITians/RMT_Backend/issues"
+  },
+  "homepage": "https://github.com/nsITians/RMT_Backend#readme",
+  "dependencies": {
+    "bad-words": "^1.6.4",
+    "body-parser": "^1.18.3",
+    "express": "^4.16.3",
+    "pg": "^7.4.3",
+    "sequelize": "^4.39.0"
+  }
+}
