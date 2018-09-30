@@ -3,6 +3,6 @@
  */
 
 module.exports = {
-    models: require('./models'),
+    sequelize: require('./models').sequelize,
     actions: require('./actions')
 };

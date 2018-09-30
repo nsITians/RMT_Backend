@@ -43,5 +43,6 @@ Teacher.hasMany(Post);
 module.exports = {
     Teacher,
     Post,
-    Admin
+    Admin,
+    sequelize: seq
 };

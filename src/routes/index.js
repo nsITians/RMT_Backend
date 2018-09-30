@@ -3,5 +3,5 @@
  */
 
 module.exports = {
-
+    v1: require('./api_v1')
 };
