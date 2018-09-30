@@ -17,5 +17,10 @@ module.exports = {
         return models.Teacher.findAll({
             where: criteria
         });
+    },
+    remove: function(criteria) {
+        return models.Teacher.destroy({
+            where: criteria
+        });
     }
 };

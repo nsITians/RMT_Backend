@@ -11,7 +11,9 @@ app.use(bp.urlencoded({extend: true}));
 
 app.use('/api/v1',api.v1);
 
-db.sequelize.sync({logging: false}).then(()=>{
+db.sequelize.sync({
+        logging: false
+    }).then(()=>{
     log('database configured');
     app.listen(4000, (req, res) => log("Server started on port 4000"));
 });

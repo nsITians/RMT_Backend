@@ -5,7 +5,7 @@
 const models = require('../models');
 
 module.exports = {
-    add: function(data){
+    add: function(data) {
         return models.Post.create(data);
     },
     edit: function (criteria,data) {
@@ -13,8 +13,13 @@ module.exports = {
             where: criteria
         });
     },
-    find: function (criteria) {
+    find: function(criteria) {
         return models.Post.findAll({
+            where: criteria
+        });
+    },
+    remove: function(criteria) {
+        return models.Post.destroy({
             where: criteria
         });
     }
