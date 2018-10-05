@@ -24,7 +24,6 @@ const Post = seq.define('post',{
     id: {type: Sequelize.INTEGER,primaryKey: true,autoIncrement: true},
     content: {type: Sequelize.STRING, allowNull: false},
     rating: {type: Sequelize.INTEGER, allowNull: false,min: 0,max: 5},
-    course: {type: Sequelize.STRING, allowNull: false},
     year: Sequelize.INTEGER
 });
 
@@ -32,17 +31,29 @@ const Post = seq.define('post',{
 const Admin = seq.define('admin',{
     id: {type: Sequelize.INTEGER,primaryKey: true,autoIncrement: true},
     name: {type: Sequelize.STRING, allowNull:false},
-    picture: {type: Sequelize.STRING, isUrl:false}
+    picture: {type: Sequelize.STRING, isUrl:true},
+    grant: {type: Sequelize.BOOLEAN, default: false}
+});
+
+/* Table to store Courses */
+const Course = seq.define('course',{
+    id: {type: Sequelize.INTEGER,primaryKey: true,autoIncrement: true},
+    name: {type: Sequelize.STRING, allowNull:false},
+    code: {type: Sequelize.STRING, unique: true, allowNull: false},
+    description: Sequelize.STRING
 });
 
 Post.belongsTo(Teacher);
 Teacher.hasMany(Post);
 
+Post.belongsTo(Course);
+Course.hasMany(Post);
 
 
 module.exports = {
     Teacher,
     Post,
     Admin,
+    Course: Course,
     sequelize: seq
 };
