@@ -5,5 +5,6 @@ const router = require('express').Router();
 
 router.use('/posts',require('./posts'));
 router.use('/teachers',require('./teachers'));
+router.use('/courses',require('./courses'));
 
 module.exports = router;

@@ -31,20 +31,38 @@ grant all privileges on database "rmtdb" to rmt with grant option;
 ```
 
 ```js
+/* Course */
+{
+	name: <String>(NOT NULL),
+	code: <String>(NOT NULL),
+	description: <String>
+}
+/*
+/api/v1/courses
+- / - GET : All courses
+- /:id - GET : Course with id
+- /:id - PUT : Edit the details of a course
+- /:id - DELETE : Delete a course
+- /new - POST : Create a new course
+- /?queryParam=query - GET : Filter results
+*/
+```
+
+```js
 /* Post */
 {
 	content: <String>(NOT NULL),
 	rating: <Integer>(0-5),
-	course: <String>,
 	year: <Integer>,
-	teacherId: <Foreign_Key>(NOT NULL)
+	teacherId: <Foreign_Key>(NOT NULL),
+	courseId: <Foreign_Key>(NOT NULL)
 }
 /*
 /api/v1/teachers
 - / - GET : All teachers
 - /:id - GET : Teacher with id
 - /:id - PUT : Edit the details of a teacher
-- /:id - DELET : Delete a teacher
+- /:id - DELETE : Delete a teacher
 - /new - POST : Create a new teacher
 - /?queryParam=query - GET : Filter results
 */
@@ -58,9 +76,9 @@ POST to `http://localhost:4000/api/v1/posts/new`
 	 {
         "content": "This is a very basic post",
         "rating": 5,
-        "course": "ITC15",
         "year": 2017,
-        "teacherId": 1
+        "teacherId": 1,
+        "courseId": 1
     }
     response:
      {
@@ -71,6 +89,7 @@ POST to `http://localhost:4000/api/v1/posts/new`
         "year": 2017,
         "createdAt": "2018-09-30T15:12:26.227Z",
         "updatedAt": "2018-09-30T15:12:58.561Z",
-        "teacherId": 1
+        "teacherId": 1,
+        "courseId": 1
     }
 ```
