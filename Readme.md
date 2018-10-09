@@ -58,12 +58,12 @@ grant all privileges on database "rmtdb" to rmt with grant option;
 	courseId: <Foreign_Key>(NOT NULL)
 }
 /*
-/api/v1/teachers
-- / - GET : All teachers
-- /:id - GET : Teacher with id
-- /:id - PUT : Edit the details of a teacher
-- /:id - DELETE : Delete a teacher
-- /new - POST : Create a new teacher
+/api/v1/posts
+- / - GET : All posts
+- /:id - GET : Post with id
+- /:id - PUT : Edit the details of a post
+- /:id - DELETE : Delete a post
+- /new - POST : Create a new post
 - /?queryParam=query - GET : Filter results
 */
 ```
