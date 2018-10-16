@@ -32,6 +32,7 @@ const Admin = seq.define('admin',{
     id: {type: Sequelize.INTEGER,primaryKey: true,autoIncrement: true},
     name: {type: Sequelize.STRING, allowNull:false},
     picture: {type: Sequelize.STRING, isUrl:true},
+    googleId: {type: Sequelize.STRING,allowNull: true,unique: true},
     grant: {type: Sequelize.BOOLEAN, default: false}
 });
 
