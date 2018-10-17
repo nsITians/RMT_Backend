@@ -44,6 +44,13 @@ const Course = seq.define('course',{
     description: Sequelize.STRING
 });
 
+/* Table to store the request codes for nominees*/
+const Request = seq.define('request',{
+    id: {type: Sequelize.INTEGER,primaryKey: true,autoIncrement: true},
+    code: {type: Sequelize.STRING,unique: true,allowNull: false},
+    email: {type: Sequelize.STRING,unique: true,isEmail: true}
+});
+
 Post.belongsTo(Teacher);
 Teacher.hasMany(Post);
 
@@ -56,5 +63,6 @@ module.exports = {
     Post,
     Admin,
     Course: Course,
+    Request: Request,
     sequelize: seq
 };

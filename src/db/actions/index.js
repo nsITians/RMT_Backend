@@ -5,5 +5,6 @@
 module.exports = {
     teachers: require('./teachers'),
     posts: require('./posts'),
-    courses: require('./courses')
+    courses: require('./courses'),
+    requests: require('./requests')
 };
