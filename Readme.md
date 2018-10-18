@@ -73,7 +73,7 @@ grant all privileges on database "rmtdb" to rmt with grant option;
 POST to `http://localhost:4000/api/v1/posts/new`
 
 ```js
-	 request_body:
+	request_body:
 	 {
         "content": "This is a very basic post",
         "rating": 5,
