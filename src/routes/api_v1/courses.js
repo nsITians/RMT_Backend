@@ -2,10 +2,11 @@
  * Created by tech4GT on 9/30/18.
  */
 const router = require('express').Router(),
+    acl = require('../../utils/acl'),
     actions = require('../../db/index').actions;
 
 
-router.post('/new',(req,res)=>{
+router.post('/new',acl.ensureAdmin,(req,res)=>{
     const data = req.body;
     actions.courses.add(data).then(data=>res.send(data));
 });
@@ -22,7 +23,7 @@ router.get('/:id',(req,res)=>{
     actions.courses.find(criteria).then(data=>res.send(data[0]));
 });
 
-router.put('/:id',(req,res)=>{
+router.put('/:id',acl.ensureAdmin,(req,res)=>{
     const criteria = {
         id: req.params.id
     },data = req.body;
@@ -35,7 +36,7 @@ router.put('/:id',(req,res)=>{
     });
 });
 
-router.delete('/:id',(req,res)=>{
+router.delete('/:id',acl.ensureAdmin,(req,res)=>{
     const criteria = {
         id: req.params.id
     };

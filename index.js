@@ -15,8 +15,7 @@ app.use(passport.initialize());
 app.use('/api/v1', api.v1);
 
 db.sequelize.sync({
-    logging: false,
-    force: true
+    logging: false
 }).then(() => {
     log('database configured');
     app.listen(4000, () => log("Server started on port 4000"));

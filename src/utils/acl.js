@@ -1,10 +1,7 @@
 module.exports = {
-    ensureLogin: function ensureLogin(req,res,next){
-      if(!!req.user) next();
-      else res.sendStatus(403);
-    },
+    ensureAdmin: require('../auth/jwt/passport').authenticate('jwt',{session: false}),
     ensureSuperAdmin: function ensureSuperAdmin(req,res,next) {
-      if(req.user.grant || req.user.id === 1) next();
-      else res.send(403);
+      if(!!req.user && (req.user.grant || req.user.id === 1)) next();
+      else res.send(401);
     }
 };

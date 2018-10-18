@@ -1,15 +1,33 @@
 const router = require('express').Router(),
     db = require('../../db'),
-    utils = require('../../utils'),
-    secrets = require('../../../config/secrets');
+    models = require('../../db/models'),
+    utils = require('../../utils');
 
-router.get('/', (req, res) => db.actions.requests.find().then(data=>res.send(data)));
+// Authentication handled in index file
 
-router.post('/new', require('../../auth/jwt/passport').authenticate('jwt', {session: false}), utils.acl.ensureLogin, utils.acl.ensureSuperAdmin, (req, res) => {
-    let email = req.body.email, obj = {code: utils.makeString(secrets.code.size)};
-    db.actions.requests.findOrCreate({email}, obj).then(data => {
-        res.send(`Please check your ${email} for ${secrets.backend.url}/api/v1/login/google/?q=${data[0].code}`);
+router.get('/', (req, res) => db.actions.requests.find().then(data => res.send(data)));
+
+router.post('/new', (req, res) => {
+    let email = {email: req.body.email};
+    db.actions.requests.findOrCreate(email, email).then(data => {
+        res.send(data);
     });
+});
+
+router.delete('/:email', (req, res) => {
+    db.actions.requests.remove({email: req.params.email})
+        .then(data => res.sendStatus(200)).catch(err => res.sendStatus(501));
+});
+
+router.put('/super/:email', (req, res) => {
+
+//     find admin by email and update to superAdmin
+    models.Admin.update({grant: true}, {
+        where: {
+            email: req.params.email
+        }
+    }).then(data => res.sendStatus(200))
+        .catch(err => res.sendStatus(501));
 });
 
 

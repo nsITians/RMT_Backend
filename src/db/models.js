@@ -33,6 +33,7 @@ const Admin = seq.define('admin',{
     name: {type: Sequelize.STRING, allowNull:false},
     picture: {type: Sequelize.STRING, isUrl:true},
     googleId: {type: Sequelize.STRING,allowNull: true,unique: true},
+    email: {type: Sequelize.STRING,allowNull: false,unique: true,isEmail: true},
     grant: {type: Sequelize.BOOLEAN, default: false}
 });
 
@@ -47,7 +48,6 @@ const Course = seq.define('course',{
 /* Table to store the request codes for nominees*/
 const Request = seq.define('request',{
     id: {type: Sequelize.INTEGER,primaryKey: true,autoIncrement: true},
-    code: {type: Sequelize.STRING,unique: true,allowNull: false},
     email: {type: Sequelize.STRING,unique: true,isEmail: true}
 });
 

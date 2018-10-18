@@ -10,8 +10,9 @@ router.post('/new',(req,res)=>{
     actions.posts.add(data).then(data=>res.send(data));
 });
 
-router.get('/',(req,res)=>{
+router.get('/',require('../../auth/jwt/passport').authenticate('jwt',{session: false}),(req,res)=>{
     const filterCriteria = req.query;
+    console.log("hdhvoihsdoivh");
     actions.posts.find(filterCriteria).then(data=> res.send(data));
 });
 
