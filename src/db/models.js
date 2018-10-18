@@ -27,6 +27,9 @@ const Post = seq.define('post',{
     year: Sequelize.INTEGER
 });
 
+/* Table to normalise Posts and Teachers */
+const PostTeacher = seq.define('post_teacher',{});
+
 /* Table to store Admins */
 const Admin = seq.define('admin',{
     id: {type: Sequelize.INTEGER,primaryKey: true,autoIncrement: true},
@@ -51,16 +54,16 @@ const Request = seq.define('request',{
     email: {type: Sequelize.STRING,unique: true,isEmail: true}
 });
 
-Post.belongsTo(Teacher);
-Teacher.hasMany(Post);
-
 Post.belongsTo(Course);
 Course.hasMany(Post);
 
+Post.belongsToMany(Teacher, {through: PostTeacher});
+Teacher.belongsToMany(Post, {through: PostTeacher});
 
 module.exports = {
     Teacher,
     Post,
+    PostTeacher,
     Admin,
     Course: Course,
     Request: Request,
