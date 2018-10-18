@@ -68,11 +68,12 @@ grant all privileges on database "rmtdb" to rmt with grant option;
 */
 ```
 
+
 ## Examples
 POST to `http://localhost:4000/api/v1/posts/new`
 
 ```js
-	 request_body: 
+	 request_body:
 	 {
         "content": "This is a very basic post",
         "rating": 5,
@@ -92,4 +93,57 @@ POST to `http://localhost:4000/api/v1/posts/new`
         "teacherId": 1,
         "courseId": 1
     }
+```
+
+
+## Roles
+
+### Users
+The users are anonymous and hence no authentication is required for get requests
+and post requests on `posts`.
+
+## Admins
+They are authenticated using the authentication API, which supports login via google,
+ they have rights to perform put and delete requests apart from posting new courses
+ and teachers.
+
+**To login as admin, the email address has to be invited by an existing super-admin**
+
+## Super-Admins
+They are also authenticated via the same api but they have the priviledge to make new admins
+ as well as make them super-admins.
+
+
+## Authentication API
+Auth is handled in 2 parts:
+- OAuth2 between server and google
+- JSON Web tokens between backend and frontend
+
+```js
+/* Headers */
+{
+    Authorization: "Bearer <token>"
+}
+
+```
+
+```js
+
+/* Request */
+{
+	email: <Email>(NOT NULL),
+}
+
+/*
+/api/v1/requests
+- / - GET : All requests
+- /:email - DELETE : Delete request to the email
+- /new - POST : Create a new request
+*/
+
+```
+
+```js
+/* Login route */
+/api/v1/login/google
 ```
